@@ -39,3 +39,46 @@ class User(AbstractBaseUser,PermissionsMixin):
 
   def __str__(self):
     return f'{self.name}'
+  
+class Product_category(models.Model):
+  name=models.CharField(max_length=255)
+  class Meta:
+    verbose_name = 'Product_category'
+    verbose_name_plural = 'Product_categories'
+
+  def __str__(self):
+    return f'{self.name}'
+
+class Product(models.Model):
+  name = models.CharField(max_length=255)
+  category = models.ForeignKey(Product_category, on_delete=models.CASCADE)
+  price = models.FloatField()
+  description = models.TextField()
+  image = models.ImageField(upload_to = 'products_media')
+
+  def __str__(self):
+    return f'{self.name}'
+  
+class Product_media(models.Model):
+  product = models.ForeignKey(Product, on_delete=models.CASCADE)
+  image = models.ImageField(upload_to = 'products_media')
+
+  def __str__(self):
+    return f'{self.product.name}\'s media'
+  
+class Product_specification(models.Model):
+  product = models.ForeignKey(Product, on_delete=models.CASCADE)
+  memory = models.CharField(max_length=255,null=True,blank=True)
+  selfie_camera = models.CharField(max_length=255,null=True,blank=True)
+  main_camera = models.CharField(max_length=255,null=True,blank=True)
+  display = models.CharField(max_length=255,null=True,blank=True)
+  ram = models.CharField(max_length=255,null=True,blank=True)
+  os = models.CharField(max_length=255,null=True,blank=True)
+  network = models.CharField(max_length=255,null=True,blank=True)
+  ram = models.CharField(max_length=255,null=True,blank=True)
+  hdd = models.CharField(max_length=255,null=True,blank=True)
+  special_feature = models.CharField(max_length=255,null=True,blank=True)
+  battery = models.CharField(max_length=255,null=True,blank=True)
+  
+
+

@@ -12,5 +12,7 @@ urlpatterns =[
 
   path('',views.index, name='index'),
   path('signup/', views.signup, name='signup'),
-  path('login/',TokenObtainPairView.as_view(), name='token_obtain_pair')
+  path('login/',TokenObtainPairView.as_view(), name='token_obtain_pair'),
+  path('products/', views.products),
+  path('product/<str:id>/', views.product)
 ]
